@@ -21,8 +21,9 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
   * Button to select Lambda backend.
 * Data stored in browser local storage.
 * Load estimate from URL slug.
-* Send estimate as permalink in an email.s
+* Send estimate as permalink in an email.
 * Served by an [nginx] container running in Amazon EC2.
+* Some functionality available offline with [UpUp].
 
 ## Backend
 
@@ -63,6 +64,10 @@ in the root dir. When you boot up the image, you will get a message asking for
 your Windows credentials to mount SMB shares. Enter your username as
 `user@domain`.
 
+Make a note of the line that says `default: IP: 192.168.nnn.nnn`. When the
+guest VM is ready, open <http://192.168.nnn.nnn> in a browser on your host
+machine to verify that you can access the web server.
+
 ### AWS
 
 * `eu-north-1`
@@ -79,5 +84,6 @@ your Windows credentials to mount SMB shares. Enter your username as
 [Sonarcloud]:https://sonarcloud.io/
 [Terraform]:https://terraform.io/
 [three-point estimation]:https://en.wikipedia.org/wiki/Three-point_estimation
+[UpUp]:https://github.com/TalAter/UpUp
 [Vagrant]:https://www.vagrantup.com/
 [Vue.js]:https://vuejs.org/
