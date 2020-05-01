@@ -76,10 +76,9 @@ Vagrant.configure("2") do |config|
   #config.vm.provision :shell, path: "bootstrap.sh"
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -q -y apache2
-    if ! [ -L /var/www ]; then
-      rm -rf /var/www
-      mkdir /var/www
+    apt-get install -q -y nginx=1.14.0-0ubuntu1.7
+    if ! [ -L /var/www/html ]; then
+      rm -rf /var/www/html
       ln -fs /vagrant/frontend /var/www/html
     fi
   SHELL
