@@ -109,7 +109,6 @@ end
 [Plotly]:https://plotly.com/javascript/box-plots/
 [Sonarcloud]:https://sonarcloud.io/
 [Terraform]:https://terraform.io/
-[three-point estimation]:https://en.wikipedia.org/wiki/Three-point_estimation
 [UpUp]:https://github.com/TalAter/UpUp
 [Vagrant]:https://www.vagrantup.com/
 [Vue.js]:https://vuejs.org/
