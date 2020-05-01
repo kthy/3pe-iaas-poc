@@ -1,7 +1,11 @@
 # [🕄]
 
-3PE IaaS PoC: a [three-point estimation] calculator showcasing automatic
-provisioning and deployment.
+![Double triangular probability distribution function][dtpdf]
+
+3PE IaaS PoC: a [three-point estimation][1] calculator (but with [proper
+calculations for the double-triangular distribution][2] instead of the
+simplified hogwash on Wikipedia) showcasing automatic provisioning and
+deployment.
 
 A hobby project to try out [Vagrant], [Terraform], [AWS] and
 [Github Actions].
@@ -44,15 +48,13 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 
 ### 0. Prerequisites
 
-This guide assumes Windows 10 Pro with [Hyper-V enabled] and configured with a
-virtual bridge.
-
-If you want to use Vagrant Share, you also need the [ngrok] executable
-somewhere on your `%PATH%`.
+This guide assumes Windows 10 Pro with [Hyper-V enabled][3] and configured with
+a virtual bridge, plus [Vagrant] 2.2.7 installed. If you want to use Vagrant
+Share, you also need the [ngrok] executable somewhere on your `%PATH%`.
 
 ### 1. Vagrant
 
-[Vagrant] is used to provision a consistent development environment. To launch
+Vagrant is used to provision a consistent development environment. To launch
 the developer VM on Windows 10, simply
 
 ```bash
@@ -68,13 +70,37 @@ Make a note of the line that says `default: IP: 192.168.nnn.nnn`. When the
 guest VM is ready, open <http://192.168.nnn.nnn> in a browser on your host
 machine to verify that you can access the web server.
 
+You can now edit the code in the `frontend` directory and immediately see your
+changes in the browser (F5, natch).
+
+The development VM is an Ubuntu 18.04 image with an nginx web server serving
+the `frontend` directory through a symlink, configured in the `Vagrantfile` as
+follows:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -q -y nginx=1.14.0-0ubuntu1.7
+    if ! [ -L /var/www/html ]; then
+      rm -rf /var/www/html
+      ln -fs /vagrant/frontend /var/www/html
+    fi
+  SHELL
+end
+```
+
 ### AWS
 
 * `eu-north-1`
 * `ami-09c69c3a9e3578c8d`
 
+[1]:https://en.wikipedia.org/wiki/Three-point_estimation
+[2]:https://www.mhnederlof.nl/doubletriangular.html
+[3]:https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
 [AWS]:https://aws.amazon.com/
-[Hyper-V enabled]:https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+[dtpdf]:http://www.mhnederlof.nl/images/doubletriangular.jpg
 [Github Actions]:https://github.com/features/actions
 [Mailgun]:https://mailgun.com/
 [nginx]:https://nginx.com/
