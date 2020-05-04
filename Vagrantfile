@@ -14,6 +14,10 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "hashicorp/bionic64"
   config.vm.box_url = "https://vagrantcloud.com/hashicorp/bionic64"
+
+  # Load .env file
+  config.env.enable
+
   #config.vm.box = "hashicorp/focal64"
   #config.vm.box_url = "https://vagrantcloud.com/hashicorp/focal64"
 
@@ -73,13 +77,19 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  #config.vm.provision :shell, path: "bootstrap.sh"
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -q -y nginx=1.14.0-0ubuntu1.7
-    if ! [ -L /var/www/html ]; then
-      rm -rf /var/www/html
-      ln -fs /vagrant/frontend /var/www/html
-    fi
-  SHELL
+
+
+  id = ENV['AWS_ACCESS_KEY_ID']
+  key = ENV['AWS_SECRET_ACCESS_KEY']
+  region = ENV['AWS_DEFAULT_REGION']
+  config.vm.provision :shell do |s|
+    s.privileged = false
+    s.args = "#{id} #{key} #{region}"
+    s.inline = <<-SHELL
+      P12G=/vagrant/provisioning
+      sudo $P12G/00-bootstrap.sh
+      $P12G/01-aws-configure.sh $1 $2 $3
+    SHELL
+  end
+
 end

@@ -38,8 +38,7 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 ## Other services
 
 * [Mailgun] to send the estimate to a friend.
-* [Open Distro for Elasticsearch] for logging - remember there's an Amazon
-  special.
+* [Open Distro for Elasticsearch] (on Amazon) for logging.
 * [Sonarcloud] for static code analysis and QA.
 
 ---
@@ -48,14 +47,21 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 
 ### 0. Prerequisites
 
-This guide assumes Windows 10 Pro with [Hyper-V enabled][3] and configured with
-a virtual bridge, plus [Vagrant] 2.2.7 installed. If you want to use Vagrant
-Share, you also need the [ngrok] executable somewhere on your `%PATH%`.
+This guide assumes you have:
+
+* Windows 10 Pro with [Hyper-V enabled][3] and configured with a virtual bridge
+* [Vagrant] 2.2.7 installed with the vagrant-env plugin (`vagrant plugin install vagrant-env`)
+
+If you want to use Vagrant Share, you also need the [ngrok] executable somewhere
+on your `%PATH%`.
 
 ### 1. Vagrant
 
-Vagrant is used to provision a consistent development environment. To launch
-the developer VM on Windows 10, simply
+Vagrant is used to create a consistent development environment. Before the first
+run - which will provision the developer VM - you need to fill in the values in
+the `.env.template` file and rename it to `.env`.
+
+To launch the developer VM on Windows 10, now simply
 
 ```bash
 vagrant up --provider=hyperv
@@ -74,22 +80,26 @@ You can now edit the code in the `frontend` directory and immediately see your
 changes in the browser (F5, natch).
 
 The development VM is an Ubuntu 18.04 image with an nginx web server serving
-the `frontend` directory through a symlink, configured in the `Vagrantfile` as
-follows:
+the `frontend` directory through a symlink, configured in the `Vagrantfile`.
 
-```ruby
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -q -y nginx=1.14.0-0ubuntu1.7
-    if ! [ -L /var/www/html ]; then
-      rm -rf /var/www/html
-      ln -fs /vagrant/frontend /var/www/html
-    fi
-  SHELL
-end
+<!--
+To install Vagrant Share and share your dev web server with the world, just
+
+```bash
+vagrant plugin install vagrant-share
+vagrant share --http 4567
 ```
+-->
+
+### 2. AWS
+
+To run the **λ** functions you need an execution role. Open the [roles page] in
+the IAM console and click *Create role*:
+
+* Choose the Lambda use case
+* Pick **AWSLambdaBasicExecutionRole**
+* No tags
+* Name the role `lambda-execution-role`
 
 ### AWS
 
@@ -107,6 +117,7 @@ end
 [ngrok]:https://ngrok.com/
 [Open Distro for Elasticsearch]:https://opendistro.github.io/for-elasticsearch/
 [Plotly]:https://plotly.com/javascript/box-plots/
+[roles page]:https://console.aws.amazon.com/iam/home#/roles
 [Sonarcloud]:https://sonarcloud.io/
 [Terraform]:https://terraform.io/
 [UpUp]:https://github.com/TalAter/UpUp
