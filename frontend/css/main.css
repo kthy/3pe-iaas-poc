@@ -99,15 +99,27 @@ textarea {
    ========================================================================== */
 
 body {
-  background-color: #fafafa;
+  background: url(../img/bg.jpg) no-repeat center center fixed !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: 'Roboto Condensed', sans-serif;
-  padding: 1em;
+}
+
+main .container {
+  background-color: #fafafa;
+  margin-top: 15px;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Roboto Slab', serif;
   color: #f0b823;
-  text-shadow: 1px 1px #000;
+  text-shadow: 1px 1px #333;
+}
+
+.text-muted a {
+  color: #6c757d !important;
 }
 
 /* ==========================================================================
