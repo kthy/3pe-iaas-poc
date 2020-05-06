@@ -14,7 +14,7 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 
 ## Frontend
 
-* HTML5 SPA built with [Vue.js]. (Or possibly just jQuery.)
+* HTML5 SPA ([12-Factor]) built with [Bootstrap].
   * Simple table with functionality:
     * Add row with work package name.
     * Update row with best-case, most-likely, worst-case estimates.
@@ -23,7 +23,7 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
     * Best estimate (95% confidence interval).
     * [Plotly] box plot of confidence intervals.
   * Button to select Lambda backend.
-* Data stored in browser local storage.
+* Data stored in browser local storage or [Redis] (user choice).
 * Load estimate from URL slug.
 * Send estimate as permalink in an email.
 * Served by an [nginx] container running in Amazon EC2.
@@ -50,7 +50,7 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 This guide assumes you have:
 
 * Windows 10 Pro with [Hyper-V enabled][3] and configured with a virtual bridge
-* [Vagrant] 2.2.7 installed with the vagrant-env plugin (`vagrant plugin install vagrant-env`)
+* [Vagrant] 2.2.x installed with the vagrant-env plugin (`vagrant plugin install vagrant-env`)
 
 If you want to use Vagrant Share, you also need the [ngrok] executable somewhere
 on your `%PATH%`.
@@ -58,13 +58,13 @@ on your `%PATH%`.
 ### 1. Vagrant
 
 Vagrant is used to create a consistent development environment. Before the first
-run - which will provision the developer VM - you need to fill in the values in
+run — which will provision the developer VM — you need to fill in the values in
 the `.env.template` file and rename it to `.env`.
 
-To launch the developer VM on Windows 10, now simply
+To launch and use the developer VM on Windows 10, now simply
 
 ```bash
-vagrant up --provider=hyperv
+vagrant up
 vagrant ssh
 ```
 
@@ -109,7 +109,9 @@ the IAM console and click *Create role*:
 [1]:https://en.wikipedia.org/wiki/Three-point_estimation
 [2]:https://www.mhnederlof.nl/doubletriangular.html
 [3]:https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v
+[12-Factor]:https://12factor.net/
 [AWS]:https://aws.amazon.com/
+[Bootstrap]:https://getbootstrap.com/
 [dtpdf]:http://www.mhnederlof.nl/images/doubletriangular.jpg
 [Github Actions]:https://github.com/features/actions
 [Mailgun]:https://mailgun.com/
@@ -117,9 +119,9 @@ the IAM console and click *Create role*:
 [ngrok]:https://ngrok.com/
 [Open Distro for Elasticsearch]:https://opendistro.github.io/for-elasticsearch/
 [Plotly]:https://plotly.com/javascript/box-plots/
+[Redis]:https://redis.io/
 [roles page]:https://console.aws.amazon.com/iam/home#/roles
 [Sonarcloud]:https://sonarcloud.io/
 [Terraform]:https://terraform.io/
 [UpUp]:https://github.com/TalAter/UpUp
 [Vagrant]:https://www.vagrantup.com/
-[Vue.js]:https://vuejs.org/
