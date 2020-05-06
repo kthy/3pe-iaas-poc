@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vagrant.sensitive = ["hunter2", ENV["AWS_SECRET_ACCESS_KEY"]]
 
   # Configure Hyper-V provider
-  config.vm.provider "hyperv" do |hyp|
+  config.vm.provider "hyperv" do |hyperv|
     hyperv.vm_integration_services = {
       guest_service_interface: true,
       heartbeat:               true,
