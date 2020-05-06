@@ -3,10 +3,28 @@
 
 Vagrant.configure("2") do |config|
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
+  # Required plugins
+  config.vagrant.plugins = ["vagrant-env", "vagrant-share"]
+
+  # Hide sensitive values from output and logs
+  config.vagrant.sensitive = ["hunter2", ENV["AWS_SECRET_ACCESS_KEY"]]
+
+  # Configure Hyper-V provider
+  config.vm.provider "hyperv" do |hyp|
+    hyperv.vm_integration_services = {
+      guest_service_interface: true,
+      heartbeat:               true,
+      key_value_pair_exchange: true,
+      shutdown:                true,
+      time_synchronization:    true,
+      vss:                     true
+    }
+    hyperv.vmname = "3pe-iaas-poc-dev"
+  end
+
+  # Select box
   config.vm.box = "hashicorp/bionic64"
-  config.vm.box_url = "https://vagrantcloud.com/hashicorp/bionic64"
+  #config.vm.box = "hashicorp/focal64"
 
   # Load .env file
   config.env.enable
@@ -22,12 +40,14 @@ Vagrant.configure("2") do |config|
   key = ENV['AWS_SECRET_ACCESS_KEY']
   region = ENV['AWS_DEFAULT_REGION']
   config.vm.provision :shell do |s|
-    s.privileged = false
     s.args = "#{id} #{key} #{region}"
+    s.privileged = false
+    s.reboot = true
     s.inline = <<-SHELL
-      P12G=/vagrant/provisioning
-      sudo $P12G/00-bootstrap.sh
-      $P12G/01-aws-configure.sh $1 $2 $3
+      p12g=/vagrant/provisioning
+      sudo $p12g/00-bootstrap.sh
+      sudo $p12g/01-packages.sh
+      $p12g/02-aws-configure.sh $1 $2 $3
     SHELL
   end
 
