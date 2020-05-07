@@ -53,10 +53,11 @@ This is a work in progress. By one person. In his spare time. **Caveat emptor!**
 
 ### 0. Prerequisites
 
-This guide assumes you have:
+This guide assumes you have
 
-* Windows 10 Pro with [Hyper-V enabled][3] and configured with a virtual bridge
-* [Vagrant] 2.2.x installed with the vagrant-env plugin (`vagrant plugin install vagrant-env`)
+* Windows 10 Pro,
+* [Hyper-V enabled][3] and configured with a virtual bridge, and
+* [Vagrant] 2.2.x installed.
 
 If you want to use Vagrant Share, you also need the [ngrok] executable somewhere
 on your `%PATH%`.
@@ -64,29 +65,22 @@ on your `%PATH%`.
 ### 1. Vagrant
 
 Vagrant is used to create a consistent development environment. Before the first
-run — which will provision the developer VM — you need to fill in the values in
-the `.env.template` file and rename it to `.env`.
-
-To launch and use the developer VM on Windows 10, now simply
-
-```bash
-vagrant up
-vagrant ssh
-```
-
-in the root dir. When you boot up the image, you will get a message asking for
-your Windows credentials to mount SMB shares. Enter your username as
-`user@domain`.
-
-Make a note of the line that says `default: IP: 192.168.nnn.nnn`. When the
-guest VM is ready, open <http://192.168.nnn.nnn> in a browser on your host
-machine to verify that you can access the web server.
-
-You can now edit the code in the `frontend` directory and immediately see your
-changes in the browser (F5, natch).
+run — which will provision the developer VM — you need to fill in the missing
+values in the `.env.template` file and rename it to `.env`.
 
 The development VM is an Ubuntu 18.04 image with an nginx web server serving
 the `frontend` directory through a symlink, configured in the `Vagrantfile`.
+
+To launch and use the developer VM, now simply `vagrant up` in the root dir.
+When you boot up the image, you will get a message asking for your Windows
+credentials to mount SMB shares. Enter your username as `user@domain`.
+
+Make a note of the line that says `default: IP: 192.168.nnn.nnn`. When the
+guest VM is ready, open the URL in the last line of the install log in a browser
+on your host machine to verify that you can access the web server.
+
+You can now edit the code in the `frontend` directory and immediately see your
+changes in the browser (F5, natch).
 
 <!--
 To install Vagrant Share and share your dev web server with the world, just
