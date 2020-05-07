@@ -12,6 +12,12 @@ A hobby project to try out [Vagrant], [Terraform], [AWS] and
 
 ---
 
+## ⚠️ WIP ⚠️
+
+This is a work in progress. By one person. In his spare time. **Caveat emptor!**
+
+---
+
 ## Frontend
 
 * HTML5 SPA ([12-Factor]) built with [Bootstrap].
