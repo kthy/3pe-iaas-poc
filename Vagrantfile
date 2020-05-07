@@ -48,6 +48,7 @@ Vagrant.configure("2") do |config|
       sudo $p12g/00-bootstrap.sh
       sudo $p12g/01-packages.sh
       $p12g/02-aws-configure.sh $1 $2 $3
+      $p12g/99-status.sh
     SHELL
   end
 
