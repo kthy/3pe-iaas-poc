@@ -5,12 +5,6 @@ apt-get -q update
 apt-get -q -y upgrade
 apt-get -q -y autoremove
 
-# Hook up nginx www dir
-if ! [ -L /var/www/html ]; then
-  rm -rf /var/www/html
-  ln -fs /vagrant/frontend /var/www/html
-fi
-
 # Install and configure AWS CLI
 if ! [ -x "$(command -v aws)" ]; then
   apt-get -q -y install unzip
