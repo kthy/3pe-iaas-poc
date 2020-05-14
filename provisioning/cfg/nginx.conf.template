@@ -1,0 +1,9 @@
+error_log /var/log/nginx/nginx_error.log;
+
+server {
+  listen 80;
+  location / {
+    root /var/www/html;
+  }
+  access_log /var/log/nginx/nginx_access.log;
+}

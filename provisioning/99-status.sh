@@ -1,15 +1,20 @@
 #!/bin/bash
+set -euo pipefail
 
+echo ""
 echo "--------------------------------------------------------------------------------"
 echo "Provisioning done!"
+echo "--------------------------------------------------------------------------------"
 
 echo ""
-aws configure list
-
-echo ""
-for pkg in nginx redis-server; do
-  echo "Installed ${pkg} $(apt-cache policy $pkg | grep Installed | sed -r 's/.*: (.+)/\1/')"
+echo "Installed $(aws --version | sed -r 's/^([^[:blank:]]+).*/\1/')"
+for PKG in nginx redis; do
+  VERSION="$(apk version ${PKG} | grep ${PKG} | sed -r 's/^[^\-]+-([^[:blank:]]+).*/\1/')"
+  echo "Installed ${PKG}/$VERSION"
 done
 
 echo ""
-echo "nginx running on http://$(hostname -I | sed -r 's/\s*$//')/"
+echo "AWS CLI configuration:"
+echo "---------------------------------------------------------------------"
+aws configure list
+echo "---------------------------------------------------------------------"
