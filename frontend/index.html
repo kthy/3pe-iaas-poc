@@ -1,40 +1,125 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="h-100 no-js" lang="en">
 
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 
-    <title>&#128324; 3pe-iaas-poc</title>
+  <title>3pe-iaas-poc</title>
 
-    <link rel="author" href="humans.txt" />
-    <meta name="description" content="three-point estimation">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="author" href="humans.txt" />
+  <meta name="apple-mobile-web-app-title" content="3P-estim.at">
+  <meta name="application-name" content="3P-estim.at">
+  <meta name="description" content="three-point estimation">
+  <meta name="msapplication-TileColor" content="#334139">
+  <meta name="theme-color" content="#fafafa">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f51aa4">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Slab:900&display=swap">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Slab:900&display=swap">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
 
-    <meta name="theme-color" content="#fafafa">
-  </head>
+<body class="d-flex flex-column h-100">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
 
-  <body>
-    <!--[if IE]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
+  <main role="main" class="flex-shrink-0">
+    <div class="container rounded">
 
-    <!-- Add your site or application content here -->
-    <h1><span style="vertical-align:2px">&#128324;</span>P-estim.at</h1>
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <script src="js/vendor/modernizr-3.8.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+      <div class="row">
+        <div class="col">
+          <h1 class="mt-5">
+            <span style="vertical-align:2px">&#128324;</span>P-estim.at
+          </h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <p class="lead">
+            It doesn't matter whether you enter values in hours, days or furlongs,
+            as long as you use the same unit everywhere. Unit conversion might be
+            added later.
+          </p>
+        </div>
+        <div class="col text-right">
+          <img style="width:100px" src="/img/noun_Planning_611995.png" alt="Planning (by Davo Sime from the Noun Project)">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <table class="table table-striped" id="estimates">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Work package</th>
+                <th scope="col">Best-case estimate</th>
+                <th scope="col">Most likely estimate</th>
+                <th scope="col">Worst-case estimate</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Dig hole</td>
+                <td>1</td>
+                <td>3</td>
+                <td>6</td>
+                <td><button type="button" class="btn btn-danger">-</button></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Fill hole</td>
+                <td>2</td>
+                <td>2.5</td>
+                <td>4</td>
+                <td><button type="button" class="btn btn-sm btn-danger">-</button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="6"><button type="button" class="btn btn-primary">+</button></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-3" style="background-color: #f0f0f0">
+    <div class="container">
+      <span class="text-muted">
+        <span style="vertical-align:1px">&#128324;</span>P-estim.at &copy; <a href="mailto:thy@42.dk">Kristian Thy</a> 2020 &mdash;
+        <a href="https://www.freepik.com/free-photos-vectors/background">background photo created by Freepik</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+</body>
 
 </html>

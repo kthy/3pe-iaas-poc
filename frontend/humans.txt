@@ -1,0 +1,18 @@
+/* TEAM */
+
+	Owner, Developer: Kristian Thy
+	Site: https://geologik.dk/
+	Email: thy [at] 42.dk
+	Location: Taastrup, Denmark
+
+/* THANKS */
+
+	Favicon: Alison Roberta @ The Noun Project
+	Location: Salzburg, Austria
+
+/* SITE */
+	Last update: 2020-05-14
+	Language: English
+	Standards: HTML5, CSS3
+	Components: H5BP, Bootstrap, Modernizr, Normalize.css
+	Software: VS Code, Gimp, realfavicongenerator.net, Vagrant, Nginx
