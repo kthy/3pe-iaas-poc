@@ -66,29 +66,25 @@ on your `%PATH%`.
 
 Vagrant is used to create a consistent development environment. Before the first
 run — which will provision the developer VM — you need to fill in the missing
-values in the `.env.template` file and rename it to `.env`.
+values in the `.env.template` file and rename it to `.env`. Enter your Windows
+username as `user@domain`. Pick a canonical timezone name from the [tzdata list]
+as the value for `TZ`, or remove the key to run the environment on UTC.
 
-The development VM is an Ubuntu 18.04 image with an nginx web server serving
+The development VM is an [Alpine] 3.11 image with an nginx web server serving
 the `frontend` directory through a symlink, configured in the `Vagrantfile`.
+If the `AWS_*` keys are set in your `.env` file, it will also have the AWS CLI
+installed.
 
 To launch and use the developer VM, now simply `vagrant up` in the root dir.
-When you boot up the image, you will get a message asking for your Windows
-credentials to mount SMB shares. Enter your username as `user@domain`.
-
-Make a note of the line that says `default: IP: 192.168.nnn.nnn`. When the
-guest VM is ready, open the URL in the last line of the install log in a browser
-on your host machine to verify that you can access the web server.
+When the guest VM is ready, open the URL in the last line of the install log in
+a browser on your host machine to verify that you can access the web server.
 
 You can now edit the code in the `frontend` directory and immediately see your
 changes in the browser (F5, natch).
 
 <!--
-To install Vagrant Share and share your dev web server with the world, just
-
-```bash
-vagrant plugin install vagrant-share
-vagrant share --http 4567
-```
+To share your dev web server with the world through Vagrant Share, just
+`vagrant share --http 4567`.
 -->
 
 ### 2. AWS
@@ -123,5 +119,6 @@ the IAM console and click *Create role*:
 [roles page]:https://console.aws.amazon.com/iam/home#/roles
 [Sonarcloud]:https://sonarcloud.io/
 [Terraform]:https://terraform.io/
+[tzdata list]:https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 [UpUp]:https://github.com/TalAter/UpUp
 [Vagrant]:https://www.vagrantup.com/
