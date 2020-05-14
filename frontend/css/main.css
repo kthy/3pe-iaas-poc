@@ -109,17 +109,18 @@ body {
 
 main .container {
   background-color: #fafafa;
+  color: #334139;
   margin-top: 15px;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Roboto Slab', serif;
-  color: #f0b823;
-  text-shadow: 1px 1px #333;
+  color: #f51aa4;
+  text-shadow: 1px 1px #334139;
 }
 
 .text-muted a {
-  color: #6c757d !important;
+  color: #808d86 !important;
 }
 
 /* ==========================================================================
