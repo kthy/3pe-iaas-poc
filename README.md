@@ -21,6 +21,7 @@ This is a work in progress. By one person. In his spare time. **Caveat emptor!**
 ## Frontend
 
 * HTML5 SPA ([12-Factor]) built with [Bootstrap].
+  * Color palette: https://coolors.co/334139-533b4d-b5dfaf-e574bc-f51aa4
   * Simple table with functionality:
     * Add row with work package name.
     * Update row with best-case, most-likely, worst-case estimates.
